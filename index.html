@@ -6,6 +6,7 @@
     /* KEYFRAMES CHO HIỆU ỨNG RƠI NGẪU NHIÊN */
     @keyframes fall {
       0% {
+        /* Bắt đầu ở trên cùng màn hình (Y: -100%) */
         transform: translateY(-100%) translateX(var(--initial-x)) rotate(var(--initial-rotate));
         opacity: 0;
       }
@@ -16,6 +17,7 @@
         opacity: 0.8;
       }
       100% {
+        /* Rơi xuống dưới cùng màn hình (Y: 100vh) */
         transform: translateY(100vh) translateX(var(--final-x)) rotate(var(--final-rotate));
         opacity: 0;
       }
@@ -31,16 +33,23 @@
       min-height: 100vh;
       overflow: hidden; 
       
-      /* CĂN GIỮA NỘI DUNG CHÍNH (Chiều dọc và ngang) */
+      /* Căn giữa wrapper content */
       display: flex;
-      flex-direction: column;
-      justify-content: center; 
-      align-items: center;
+      justify-content: center; /* Căn giữa ngang */
+      align-items: center; /* Căn giữa dọc */
+    }
+
+    /* BỌC NỘI DUNG CHÍNH ĐỂ CĂN GIỮA TOÀN BỘ KHỐI CHỮ & VIDEO */
+    .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10; /* Đảm bảo wrapper nằm trên ảnh rơi */
     }
 
     h1 {
       color: #8b0000;
-      font-size: 5em; /* Kích thước to */
+      font-size: 5em; 
       margin-top: 0; 
       margin-bottom: 5px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
@@ -49,7 +58,7 @@
 
     p {
       color: #880e4f;
-      font-size: 3em; /* Kích thước to */
+      font-size: 3em; 
       margin-bottom: 20px;
       z-index: 15;
     }
@@ -65,7 +74,7 @@
       position: relative;
       margin-top: 10px; 
       z-index: 10; 
-      max-width: 90%; /* Kích thước to */
+      max-width: 90%; 
     }
     
     /* Hoa hồng (Góc trên trái và dưới phải) */
@@ -106,8 +115,7 @@
       height: auto;
       display: block;
     }
-
-    /* ĐIỀU CHỈNH THANH ĐIỀU KHIỂN VIDEO */
+/* ĐIỀU CHỈNH THANH ĐIỀU KHIỂN VIDEO */
     video::-webkit-media-controls-enclosure {
       min-height: 40px; 
     }
@@ -115,38 +123,38 @@
     /* HIỆU ỨNG ẢNH RƠI (Kích thước 70px, tốc độ chậm) */
     .falling-photo {
       position: absolute;
-      width: 200px; 
-      height: 200px;
+      width: 300px; 
+      height: 300px;
       border-radius: 5px;
       object-fit: cover;
-opacity: 0;
+      opacity: 0;
       animation-name: fall;
       animation-iteration-count: infinite;
       z-index: 5;
     }
 
     /* THIẾT LẬP RƠI CHẬM VÀ XEN KẼ CHO 5 ẢNH CHỌN LỌC */
-    /* Sử dụng các ID phù hợp với thứ tự mới (photo1 đến photo5) */
-    #photo1 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 10%; animation-duration: 25s; animation-delay: 0s; } /* Ảnh 2 */
-    #photo2 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 30%; animation-duration: 30s; animation-delay: 5s; } /* Ảnh 3 */
-    #photo3 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 50%; animation-duration: 26s; animation-delay: 10s; } /* Ảnh 15 */
-    #photo4 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 70%; animation-duration: 29s; animation-delay: 15s; } /* Ảnh 18 */
-    #photo5 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 90%; animation-duration: 28s; animation-delay: 20s; } /* Ảnh 24 */
-    
-
+    #photo1 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 10%; animation-duration: 25s; animation-delay: 0s; } 
+    #photo2 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 30%; animation-duration: 30s; animation-delay: 5s; } 
+    #photo3 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 50%; animation-duration: 26s; animation-delay: 10s; } 
+    #photo4 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 70%; animation-duration: 29s; animation-delay: 15s; } 
+    #photo5 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 90%; animation-duration: 28s; animation-delay: 20s; } 
   </style>
 </head>
 <body>
-  <h1>Thùy Linh & Minh Hiếu</h1>
-  <p>Wedding</p>
   
-  <div class="video-container">
-    <span id="leaf-top-right" class="leaf-branch">🌿</span>
-    <span id="leaf-bottom-left" class="leaf-branch">🌿</span>
-    <video controls>
-      <source src="MWD chú rể.mp4" type="video/mp4">
-      Trình duyệt của bạn không hỗ trợ thẻ video.
-    </video>
+  <div class="content-wrapper">
+      <h1>Thùy Linh & Minh Hiếu</h1>
+      <p>Wedding</p>
+      
+      <div class="video-container">
+        <span id="leaf-top-right" class="leaf-branch">🌿</span>
+        <span id="leaf-bottom-left" class="leaf-branch">🌿</span>
+        <video controls>
+          <source src="MWD.mp4" type="video/mp4">
+          Trình duyệt của bạn không hỗ trợ thẻ video.
+        </video>
+      </div>
   </div>
 
   <img src="anh2.jpg" alt="Photo 2" class="falling-photo" id="photo1">
