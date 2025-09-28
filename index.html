@@ -6,7 +6,6 @@
     /* KEYFRAMES CHO HIỆU ỨNG RƠI NGẪU NHIÊN */
     @keyframes fall {
       0% {
-        /* Bắt đầu ở trên cùng màn hình (Y: -100%) */
         transform: translateY(-100%) translateX(var(--initial-x)) rotate(var(--initial-rotate));
         opacity: 0;
       }
@@ -17,7 +16,6 @@
         opacity: 0.8;
       }
       100% {
-        /* Rơi xuống dưới cùng màn hình (Y: 100vh) */
         transform: translateY(100vh) translateX(var(--final-x)) rotate(var(--final-rotate));
         opacity: 0;
       }
@@ -26,34 +24,35 @@
     /* CSS CHÍNH */
     body {
       font-family: 'Times New Roman', serif;
-      background-color: #f5f5dc; /* Màu be */
+      background-color: #f5f5dc; 
       color: #333;
       text-align: center;
       position: relative;
       min-height: 100vh;
       overflow: hidden; 
       
-      /* CHỈ CĂN GIỮA NỘI DUNG THEO CHIỀU NGANG */
+      /* CĂN GIỮA NỘI DUNG CHÍNH (Chiều dọc và ngang) */
       display: flex;
       flex-direction: column;
+      justify-content: center; 
       align-items: center;
-      /* KHÔNG dùng justify-content: flex-start/center; */
+      padding-top: 0; 
     }
 
     h1 {
       color: #8b0000;
-      font-size: 4em;
-      margin-top: 50px; /* TẠO KHOẢNG CÁCH TỪ ĐỈNH TRANG XUỐNG CHỮ */
+      font-size: 5em; /* ĐÃ TĂNG KÍCH THƯỚC CHỮ */
+      margin-top: 0; 
       margin-bottom: 5px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      z-index: 15; /* Đảm bảo chữ nằm trên ảnh rơi */
+      z-index: 15;
     }
 
     p {
       color: #880e4f;
-      font-size: 2.5em;
+      font-size: 3em; /* ĐÃ TĂNG KÍCH THƯỚC CHỮ */
       margin-bottom: 20px;
-      z-index: 15; /* Đảm bảo chữ nằm trên ảnh rơi */
+      z-index: 15;
     }
 
     /* KHUNG VIỀN HOA HỒNG VÀ CÀNH LÁ CHO VIDEO */
@@ -67,7 +66,7 @@
       position: relative;
       margin-top: 10px; 
       z-index: 10; 
-      max-width: 80%;
+      max-width: 90%; /* ĐÃ TĂNG KÍCH THƯỚC VIDEO */
     }
     
     /* Hoa hồng (Góc trên trái và dưới phải) */
@@ -109,45 +108,35 @@
       display: block;
     }
 
-    /* HIỆU ỨNG ẢNH RƠI */
+    /* ĐIỀU CHỈNH THANH ĐIỀU KHIỂN VIDEO */
+    video::-webkit-media-controls-enclosure {
+      min-height: 40px; 
+    }
+
+    /* HIỆU ỨNG ẢNH RƠI (Kích thước và tốc độ giữ nguyên) */
     .falling-photo {
       position: absolute;
-width: 300px; 
-      height: 300px;
+      width: 200px;
+height: 200px;
       border-radius: 5px;
       object-fit: cover;
       opacity: 0;
       animation-name: fall;
       animation-iteration-count: infinite;
-      z-index: 5; /* Ảnh rơi vẫn nằm giữa background và video/chữ */
+      z-index: 5;
     }
 
-    /* THIẾT LẬP NGẪU NHIÊN CHO 25 ẢNH */
-    #photo1 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 5%; animation-duration: 15s; animation-delay: 0s; }
-    #photo2 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 10%; animation-duration: 20s; animation-delay: 1s; }
-    #photo3 { --initial-x: 5px; --initial-rotate: -5deg; --final-x: 40px; --final-rotate: 20deg; left: 15%; animation-duration: 12s; animation-delay: 2s; }
-    #photo4 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 20%; animation-duration: 18s; animation-delay: 3s; }
-    #photo5 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 25%; animation-duration: 16s; animation-delay: 4s; }
-    #photo6 { --initial-x: -30px; --initial-rotate: 5deg; --final-x: -5px; --final-rotate: 15deg; left: 30%; animation-duration: 22s; animation-delay: 5s; }
-    #photo7 { --initial-x: 10px; --initial-rotate: -15deg; --final-x: 35px; --final-rotate: -5deg; left: 35%; animation-duration: 14s; animation-delay: 6s; }
-    #photo8 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 40%; animation-duration: 19s; animation-delay: 7s; }
-    #photo9 { --initial-x: 25px; --initial-rotate: -10deg; --final-x: 10px; --final-rotate: -15deg; left: 45%; animation-duration: 17s; animation-delay: 8s; }
-    #photo10 { --initial-x: -15px; --initial-rotate: 0deg; --final-x: 5px; --final-rotate: 10deg; left: 50%; animation-duration: 13s; animation-delay: 9s; }
-    #photo11 { --initial-x: 5px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 55%; animation-duration: 15s; animation-delay: 10s; }
-    #photo12 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 60%; animation-duration: 20s; animation-delay: 11s; }
-    #photo13 { --initial-x: 5px; --initial-rotate: -5deg; --final-x: 40px; --final-rotate: 20deg; left: 65%; animation-duration: 12s; animation-delay: 12s; }
-    #photo14 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 70%; animation-duration: 18s; animation-delay: 13s; }
-    #photo15 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 75%; animation-duration: 16s; animation-delay: 14s; }
-    #photo16 { --initial-x: -30px; --initial-rotate: 5deg; --final-x: -5px; --final-rotate: 15deg; left: 80%; animation-duration: 22s; animation-delay: 15s; }
-#photo17 { --initial-x: 10px; --initial-rotate: -15deg; --final-x: 35px; --final-rotate: -5deg; left: 85%; animation-duration: 14s; animation-delay: 16s; }
-    #photo18 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 90%; animation-duration: 19s; animation-delay: 17s; }
-    #photo19 { --initial-x: 25px; --initial-rotate: -10deg; --final-x: 10px; --final-rotate: -15deg; left: 95%; animation-duration: 17s; animation-delay: 18s; }
-    #photo20 { --initial-x: -15px; --initial-rotate: 0deg; --final-x: 5px; --final-rotate: 10deg; left: 3%; animation-duration: 13s; animation-delay: 19s; }
-    #photo21 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 8%; animation-duration: 15s; animation-delay: 20s; }
-    #photo22 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 13%; animation-duration: 20s; animation-delay: 21s; }
-    #photo23 { --initial-x: 5px; --initial-rotate: -5deg; --final-x: 40px; --final-rotate: 20deg; left: 18%; animation-duration: 12s; animation-delay: 22s; }
-    #photo24 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 23%; animation-duration: 18s; animation-delay: 23s; }
-    #photo25 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 28%; animation-duration: 16s; animation-delay: 24s; }
+    /* THIẾT LẬP RƠI CHẬM VÀ XEN KẼ CHO 10 ẢNH */
+    #photo1 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 5%; animation-duration: 25s; animation-delay: 0s; }
+    #photo2 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 15%; animation-duration: 30s; animation-delay: 3s; }
+    #photo3 { --initial-x: 5px; --initial-rotate: -5deg; --final-x: 40px; --final-rotate: 20deg; left: 25%; animation-duration: 22s; animation-delay: 6s; }
+    #photo4 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 35%; animation-duration: 28s; animation-delay: 9s; }
+    #photo5 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 45%; animation-duration: 26s; animation-delay: 12s; }
+    #photo6 { --initial-x: -30px; --initial-rotate: 5deg; --final-x: -5px; --final-rotate: 15deg; left: 55%; animation-duration: 32s; animation-delay: 15s; }
+    #photo7 { --initial-x: 10px; --initial-rotate: -15deg; --final-x: 35px; --final-rotate: -5deg; left: 65%; animation-duration: 24s; animation-delay: 18s; }
+    #photo8 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 75%; animation-duration: 29s; animation-delay: 21s; }
+    #photo9 { --initial-x: 25px; --initial-rotate: -10deg; --final-x: 10px; --final-rotate: -15deg; left: 85%; animation-duration: 27s; animation-delay: 24s; }
+    #photo10 { --initial-x: -15px; --initial-rotate: 0deg; --final-x: 5px; --final-rotate: 10deg; left: 95%; animation-duration: 23s; animation-delay: 27s; }
 
   </style>
 </head>
@@ -174,20 +163,5 @@ width: 300px;
   <img src="anh8.jpg" alt="Photo 8" class="falling-photo" id="photo8">
   <img src="anh9.jpg" alt="Photo 9" class="falling-photo" id="photo9">
   <img src="anh10.jpg" alt="Photo 10" class="falling-photo" id="photo10">
-  <img src="anh11.jpg" alt="Photo 11" class="falling-photo" id="photo11">
-  <img src="anh12.jpg" alt="Photo 12" class="falling-photo" id="photo12">
-  <img src="anh13.jpg" alt="Photo 13" class="falling-photo" id="photo13">
-  <img src="anh14.jpg" alt="Photo 14" class="falling-photo" id="photo14">
-  <img src="anh15.jpg" alt="Photo 15" class="falling-photo" id="photo15">
-  <img src="anh16.jpg" alt="Photo 16" class="falling-photo" id="photo16">
-<img src="anh17.jpg" alt="Photo 17" class="falling-photo" id="photo17">
-  <img src="anh18.jpg" alt="Photo 18" class="falling-photo" id="photo18">
-  <img src="anh19.jpg" alt="Photo 19" class="falling-photo" id="photo19">
-  <img src="anh20.jpg" alt="Photo 20" class="falling-photo" id="photo20">
-  <img src="anh21.jpg" alt="Photo 21" class="falling-photo" id="photo21">
-  <img src="anh22.jpg" alt="Photo 22" class="falling-photo" id="photo22">
-  <img src="anh23.jpg" alt="Photo 23" class="falling-photo" id="photo23">
-  <img src="anh24.jpg" alt="Photo 24" class="falling-photo" id="photo24">
-  <img src="anh25.jpg" alt="Photo 25" class="falling-photo" id="photo25">
 </body>
 </html>
