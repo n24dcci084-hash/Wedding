@@ -36,12 +36,11 @@
       flex-direction: column;
       justify-content: center; 
       align-items: center;
-      padding-top: 0; 
     }
 
     h1 {
       color: #8b0000;
-      font-size: 5em; /* ĐÃ TĂNG KÍCH THƯỚC CHỮ */
+      font-size: 5em; /* Kích thước to */
       margin-top: 0; 
       margin-bottom: 5px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
@@ -50,7 +49,7 @@
 
     p {
       color: #880e4f;
-      font-size: 3em; /* ĐÃ TĂNG KÍCH THƯỚC CHỮ */
+      font-size: 3em; /* Kích thước to */
       margin-bottom: 20px;
       z-index: 15;
     }
@@ -66,7 +65,7 @@
       position: relative;
       margin-top: 10px; 
       z-index: 10; 
-      max-width: 90%; /* ĐÃ TĂNG KÍCH THƯỚC VIDEO */
+      max-width: 90%; /* Kích thước to */
     }
     
     /* Hoa hồng (Góc trên trái và dưới phải) */
@@ -113,30 +112,27 @@
       min-height: 40px; 
     }
 
-    /* HIỆU ỨNG ẢNH RƠI (Kích thước và tốc độ giữ nguyên) */
+    /* HIỆU ỨNG ẢNH RƠI (Kích thước 70px, tốc độ chậm) */
     .falling-photo {
       position: absolute;
-      width: 200px;
-height: 200px;
+      width: 200px; 
+      height: 200px;
       border-radius: 5px;
       object-fit: cover;
-      opacity: 0;
+opacity: 0;
       animation-name: fall;
       animation-iteration-count: infinite;
       z-index: 5;
     }
 
-    /* THIẾT LẬP RƠI CHẬM VÀ XEN KẼ CHO 10 ẢNH */
-    #photo1 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 5%; animation-duration: 25s; animation-delay: 0s; }
-    #photo2 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 15%; animation-duration: 30s; animation-delay: 3s; }
-    #photo3 { --initial-x: 5px; --initial-rotate: -5deg; --final-x: 40px; --final-rotate: 20deg; left: 25%; animation-duration: 22s; animation-delay: 6s; }
-    #photo4 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 35%; animation-duration: 28s; animation-delay: 9s; }
-    #photo5 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 45%; animation-duration: 26s; animation-delay: 12s; }
-    #photo6 { --initial-x: -30px; --initial-rotate: 5deg; --final-x: -5px; --final-rotate: 15deg; left: 55%; animation-duration: 32s; animation-delay: 15s; }
-    #photo7 { --initial-x: 10px; --initial-rotate: -15deg; --final-x: 35px; --final-rotate: -5deg; left: 65%; animation-duration: 24s; animation-delay: 18s; }
-    #photo8 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 75%; animation-duration: 29s; animation-delay: 21s; }
-    #photo9 { --initial-x: 25px; --initial-rotate: -10deg; --final-x: 10px; --final-rotate: -15deg; left: 85%; animation-duration: 27s; animation-delay: 24s; }
-    #photo10 { --initial-x: -15px; --initial-rotate: 0deg; --final-x: 5px; --final-rotate: 10deg; left: 95%; animation-duration: 23s; animation-delay: 27s; }
+    /* THIẾT LẬP RƠI CHẬM VÀ XEN KẼ CHO 5 ẢNH CHỌN LỌC */
+    /* Sử dụng các ID phù hợp với thứ tự mới (photo1 đến photo5) */
+    #photo1 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 10%; animation-duration: 25s; animation-delay: 0s; } /* Ảnh 2 */
+    #photo2 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 30%; animation-duration: 30s; animation-delay: 5s; } /* Ảnh 3 */
+    #photo3 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 50%; animation-duration: 26s; animation-delay: 10s; } /* Ảnh 15 */
+    #photo4 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 70%; animation-duration: 29s; animation-delay: 15s; } /* Ảnh 18 */
+    #photo5 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 90%; animation-duration: 28s; animation-delay: 20s; } /* Ảnh 24 */
+    
 
   </style>
 </head>
@@ -148,20 +144,15 @@ height: 200px;
     <span id="leaf-top-right" class="leaf-branch">🌿</span>
     <span id="leaf-bottom-left" class="leaf-branch">🌿</span>
     <video controls>
-      <source src="MWD.mp4" type="video/mp4">
+      <source src="MWD chú rể.mp4" type="video/mp4">
       Trình duyệt của bạn không hỗ trợ thẻ video.
     </video>
   </div>
 
-  <img src="anh1.jpg" alt="Photo 1" class="falling-photo" id="photo1">
-  <img src="anh2.jpg" alt="Photo 2" class="falling-photo" id="photo2">
-  <img src="anh3.jpg" alt="Photo 3" class="falling-photo" id="photo3">
-  <img src="anh4.jpg" alt="Photo 4" class="falling-photo" id="photo4">
-  <img src="anh5.jpg" alt="Photo 5" class="falling-photo" id="photo5">
-  <img src="anh6.jpg" alt="Photo 6" class="falling-photo" id="photo6">
-  <img src="anh7.jpg" alt="Photo 7" class="falling-photo" id="photo7">
-  <img src="anh8.jpg" alt="Photo 8" class="falling-photo" id="photo8">
-  <img src="anh9.jpg" alt="Photo 9" class="falling-photo" id="photo9">
-  <img src="anh10.jpg" alt="Photo 10" class="falling-photo" id="photo10">
+  <img src="anh2.jpg" alt="Photo 2" class="falling-photo" id="photo1">
+  <img src="anh3.jpg" alt="Photo 3" class="falling-photo" id="photo2">
+  <img src="anh15.jpg" alt="Photo 15" class="falling-photo" id="photo3">
+  <img src="anh18.jpg" alt="Photo 18" class="falling-photo" id="photo4">
+  <img src="anh24.jpg" alt="Photo 24" class="falling-photo" id="photo5">
 </body>
 </html>
