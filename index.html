@@ -18,19 +18,56 @@
       min-height: 100vh;
     }
 
+    /* Ảnh rơi nằm sau video */
+    .falling-photo {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      animation: fall linear infinite;
+      animation-fill-mode: forwards;
+      opacity: 0;
+      z-index: 1; /* nằm sau video */
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100%) translateX(var(--x)) rotate(var(--r));
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(var(--x-end)) rotate(var(--r-end));
+        opacity: 0;
+      }
+    }
+
+    #photo1 { left: 5%; --x: 0px; --x-end: 30px; --r: 10deg; --r-end: 30deg; animation-duration: 28s; animation-delay: 0s; }
+    #photo2 { left: 25%; --x: -20px; --x-end: -10px; --r: -15deg; --r-end: 10deg; animation-duration: 30s; animation-delay: 5s; }
+    #photo3 { left: 50%; --x: 15px; --x-end: 25px; --r: 5deg; --r-end: -5deg; animation-duration: 32s; animation-delay: 10s; }
+    #photo4 { left: 70%; --x: -10px; --x-end: -30px; --r: 20deg; --r-end: 25deg; animation-duration: 34s; animation-delay: 15s; }
+    #photo5 { left: 90%; --x: -25px; --x-end: -10px; --r: -25deg; --r-end: -20deg; animation-duration: 36s; animation-delay: 20s; }
+
     .content-wrapper {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 20px;
       text-align: center;
-      z-index: 10;
+      z-index: 10; /* nằm trên ảnh rơi */
     }
 
     h1 {
       color: #c00000;
-      font-size: 2.5em;
+      font-size: 2.2em; /* nhỏ lại một chút */
       margin: 0;
       white-space: nowrap;
     }
@@ -85,44 +122,17 @@
       border-radius: 10px;
       display: block;
     }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-100%) translateX(var(--x)) rotate(var(--r));
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) translateX(var(--x-end)) rotate(var(--r-end));
-        opacity: 0;
-      }
-    }
-
-    .falling-photo {
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 15px;
-      animation: fall linear infinite;
-      animation-fill-mode: forwards;
-      opacity: 0;
-      z-index: 5;
-    }
-
-    #photo1 { left: 5%; --x: 0px; --x-end: 30px; --r: 10deg; --r-end: 30deg; animation-duration: 28s; animation-delay: 0s; }
-    #photo2 { left: 25%; --x: -20px; --x-end: -10px; --r: -15deg; --r-end: 10deg; animation-duration: 30s; animation-delay: 5s; }
-    #photo3 { left: 50%; --x: 15px; --x-end: 25px; --r: 5deg; --r-end: -5deg; animation-duration: 32s; animation-delay: 10s; }
-    #photo4 { left: 70%; --x: -10px; --x-end: -30px; --r: 20deg; --r-end: 25deg; animation-duration: 34s; animation-delay: 15s; }
-    #photo5 { left: 90%; --x: -25px; --x-end: -10px; --r: -25deg; --r-end: -20deg; animation-duration: 36s; animation-delay: 20s; }
   </style>
 </head>
 <body>
+  <!-- Ảnh rơi nằm sau nội dung -->
+  <img src="anh2.jpg" alt="Ảnh 2" class="falling-photo" id="photo1">
+  <img src="anh3.jpg" alt="Ảnh 3" class="falling-photo" id="photo2">
+  <img src="anh15.jpg" alt="Ảnh 15" class="falling-photo" id="photo3">
+  <img src="anh18.jpg" alt="Ảnh 18" class="falling-photo" id="photo4">
+  <img src="anh24.jpg" alt="Ảnh 24" class="falling-photo" id="photo5">
+
+  <!-- Nội dung chính -->
   <div class="content-wrapper">
     <h1>Thùy Linh & Minh Hiếu</h1>
     <div class="video-container">
@@ -134,12 +144,5 @@
       </video>
     </div>
   </div>
-
-  <!-- Ảnh rơi -->
-  <img src="anh2.jpg" alt="Ảnh 2" class="falling-photo" id="photo1">
-  <img src="anh3.jpg" alt="Ảnh 3" class="falling-photo" id="photo2">
-  <img src="anh15.jpg" alt="Ảnh 15" class="falling-photo" id="photo3">
-  <img src="anh18.jpg" alt="Ảnh 18" class="falling-photo" id="photo4">
-  <img src="anh24.jpg" alt="Ảnh 24" class="falling-photo" id="photo5">
 </body>
 </html>
