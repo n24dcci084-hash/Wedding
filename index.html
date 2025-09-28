@@ -34,10 +34,14 @@
       height: 100vh;
       position: relative;
       text-align: center;
+      flex-direction: column;
+      padding: 20px;
     }
 
     .content-wrapper {
       z-index: 10;
+      max-width: 800px;
+      width: 100%;
     }
 
     h1 {
@@ -61,6 +65,8 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       position: relative;
       display: inline-block;
+      width: 100%;
+      max-width: 100%;
     }
 
     .video-container::before, .video-container::after {
@@ -125,7 +131,7 @@
     /* Emoji hoa anh đào rơi */
     .falling-emoji {
       position: absolute;
-      font-size: 40px;
+      font-size: 100px;
       animation-name: fall;
       animation-iteration-count: infinite;
       z-index: 4;
@@ -136,6 +142,30 @@
     #emoji3 { --initial-x: 20px; --initial-rotate: 5deg; --final-x: 15px; --final-rotate: -5deg; left: 55%; animation-duration: 26s; animation-delay: 10s; }
     #emoji4 { --initial-x: -15px; --initial-rotate: 20deg; --final-x: -10px; --final-rotate: -20deg; left: 75%; animation-duration: 28s; animation-delay: 14s; }
     #emoji5 { --initial-x: 10px; --initial-rotate: -15deg; --final-x: 5px; --final-rotate: 15deg; left: 85%; animation-duration: 30s; animation-delay: 18s; }
+
+    /* Responsive cho điện thoại */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      p {
+        font-size: 1.8em;
+      }
+
+      .video-container {
+        padding: 15px;
+      }
+
+      .falling-photo {
+        width: 150px;
+        height: 150px;
+      }
+
+      .falling-emoji {
+        font-size: 30px;
+      }
+    }
   </style>
 </head>
 <body>
