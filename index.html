@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Thùy Linh & Minh Hiếu</title>
   <style>
-    /* Hiệu ứng rơi */
     @keyframes fall {
       0% {
         transform: translateY(-100%) translateX(var(--initial-x)) rotate(var(--initial-rotate));
@@ -29,31 +28,30 @@
       background-color: #f5f5dc;
       color: #333;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
-      text-align: center;
-      flex-direction: column;
+      position: relative;
     }
 
     .content-wrapper {
+      position: absolute;
+      top: 50%;
+      right: 5%;
+      transform: translateY(-50%);
+      text-align: center;
       z-index: 10;
-      max-width: 900px;
-      width: 100%;
-      padding: 20px;
+      max-width: 600px;
     }
 
     h1 {
       color: #8b0000;
-      font-size: 5em;
+      font-size: 4em;
       margin: 0;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
     p {
       color: #880e4f;
-      font-size: 3em;
+      font-size: 2.5em;
       margin: 10px 0 20px;
     }
 
@@ -66,7 +64,6 @@
       position: relative;
       display: inline-block;
       width: 100%;
-      max-width: 100%;
     }
 
     .video-container::before, .video-container::after {
@@ -110,7 +107,6 @@
       display: block;
     }
 
-    /* Ảnh rơi */
     .falling-photo {
       position: absolute;
       width: 300px;
@@ -127,21 +123,6 @@
     #photo4 { left: 70%; animation-duration: 29s; animation-delay: 15s; --initial-x: -5px; --final-x: -30px; --initial-rotate: 20deg; --final-rotate: 25deg; }
     #photo5 { left: 90%; animation-duration: 27s; animation-delay: 20s; --initial-x: -25px; --final-x: -10px; --initial-rotate: 25deg; --final-rotate: -20deg; }
 
-    /* Emoji hoa anh đào rơi */
-    .falling-emoji {
-      position: absolute;
-      font-size: 50px;
-      animation: fall linear infinite;
-      z-index: 4;
-    }
-
-    #emoji1 { left: 15%; animation-duration: 22s; animation-delay: 2s; --initial-x: 5px; --final-x: 10px; --initial-rotate: 0deg; --final-rotate: 15deg; }
-    #emoji2 { left: 35%; animation-duration: 24s; animation-delay: 6s; --initial-x: -10px; --final-x: -5px; --initial-rotate: -10deg; --final-rotate: 10deg; }
-    #emoji3 { left: 55%; animation-duration: 26s; animation-delay: 10s; --initial-x: 20px; --final-x: 15px; --initial-rotate: 5deg; --final-rotate: -5deg; }
-    #emoji4 { left: 75%; animation-duration: 28s; animation-delay: 14s; --initial-x: -15px; --final-x: -10px; --initial-rotate: 20deg; --final-rotate: -20deg; }
-    #emoji5 { left: 85%; animation-duration: 30s; animation-delay: 18s; --initial-x: 10px; --final-x: 5px; --initial-rotate: -15deg; --final-rotate: 15deg; }
-
-    /* Responsive cho điện thoại */
     @media (max-width: 768px) {
       h1 {
         font-size: 3em;
@@ -151,17 +132,14 @@
         font-size: 2em;
       }
 
-      .video-container {
-        padding: 15px;
+      .content-wrapper {
+        right: 2%;
+        max-width: 90%;
       }
 
       .falling-photo {
         width: 120px;
         height: 120px;
-      }
-
-      .falling-emoji {
-        font-size: 35px;
       }
     }
   </style>
@@ -186,12 +164,5 @@
   <img src="anh15.jpg" alt="Photo 15" class="falling-photo" id="photo3">
   <img src="anh18.jpg" alt="Photo 18" class="falling-photo" id="photo4">
   <img src="anh24.jpg" alt="Photo 24" class="falling-photo" id="photo5">
-
-  <!-- Emoji hoa anh đào rơi -->
-  <span class="falling-emoji" id="emoji1">🌸</span>
-  <span class="falling-emoji" id="emoji2">🌸</span>
-  <span class="falling-emoji" id="emoji3">🌸</span>
-  <span class="falling-emoji" id="emoji4">🌸</span>
-  <span class="falling-emoji" id="emoji5">🌸</span>
 </body>
 </html>
