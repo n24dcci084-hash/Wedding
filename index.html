@@ -3,27 +3,12 @@
 <head>
   <title>Thùy Linh & Minh Hiếu</title>
   <style>
-    /* KEYFRAMES CHO HIỆU ỨNG RƠI NGẪU NHIÊN */
     @keyframes fall {
-      0% {
-        /* Bắt đầu ở trên cùng màn hình (Y: -100%) */
-        transform: translateY(-100%) translateX(var(--initial-x)) rotate(var(--initial-rotate));
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.8; 
-      }
-      90% {
-        opacity: 0.8;
-      }
-      100% {
-        /* Rơi xuống dưới cùng màn hình (Y: 100vh) */
-        transform: translateY(100vh) translateX(var(--final-x)) rotate(var(--final-rotate));
-        opacity: 0;
-      }
+      0% { transform: translateY(-100%) translateX(var(--initial-x)) rotate(var(--initial-rotate)); opacity: 0; }
+      10%, 90% { opacity: 0.8; }
+      100% { transform: translateY(100vh) translateX(var(--final-x)) rotate(var(--final-rotate)); opacity: 0; }
     }
 
-    /* CSS CHÍNH */
     body {
       font-family: 'Times New Roman', serif;
       background-color: #f5f5dc; 
@@ -31,99 +16,73 @@
       text-align: center;
       position: relative;
       min-height: 100vh;
-      overflow: hidden; 
-      
-      /* Căn giữa wrapper content */
+      overflow-x: hidden;
       display: flex;
-      justify-content: center; /* Căn giữa ngang */
-      align-items: center; /* Căn giữa dọc */
+      justify-content: center;
+      align-items: center;
     }
 
-    /* BỌC NỘI DUNG CHÍNH ĐỂ CĂN GIỮA TOÀN BỘ KHỐI CHỮ & VIDEO */
     .content-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
-        z-index: 10; /* Đảm bảo wrapper nằm trên ảnh rơi */
+        z-index: 10;
+        width: 100%;
     }
 
     h1 {
       color: #8b0000;
-      font-size: 5em; 
-      margin-top: 0; 
-      margin-bottom: 5px;
+      font-size: 5em;
+      margin: 0 0 5px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-      z-index: 15;
     }
 
     p {
       color: #880e4f;
-      font-size: 3em; 
+      font-size: 3em;
       margin-bottom: 20px;
-      z-index: 15;
     }
 
-    /* KHUNG VIỀN HOA HỒNG VÀ CÀNH LÁ CHO VIDEO */
     .video-container {
-      display: inline-block;
+      display: flex;
+      justify-content: center; /* Căn giữa video */
+      align-items: center;
       padding: 30px;
       border: 2px solid #b7410e;
       border-radius: 20px;
       background-color: #ffffff;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       position: relative;
-      margin-top: 10px; 
-      z-index: 10; 
-      max-width: 90%; 
+      margin-top: 10px;
+      max-width: 90%;
     }
-    
-    /* Hoa hồng (Góc trên trái và dưới phải) */
+
     .video-container::before, .video-container::after {
         content: "🌹";
         font-size: 30px;
         position: absolute;
-        z-index: 20;
     }
-    .video-container::before {
-        top: 0; left: 0;
-        transform: translate(-50%, -50%);
-    }
-    .video-container::after {
-        bottom: 0; right: 0;
-        transform: translate(50%, 50%);
-    }
+    .video-container::before { top: 0; left: 0; transform: translate(-50%, -50%); }
+    .video-container::after { bottom: 0; right: 0; transform: translate(50%, 50%); }
 
-    /* Cành lá xanh (Góc trên phải và dưới trái) */
     .leaf-branch {
         content: "🌿";
         font-size: 30px;
         position: absolute;
-        z-index: 20;
     }
-    #leaf-top-right {
-        top: 0; right: 0;
-        transform: translate(50%, -50%) rotate(45deg);
-    }
-    #leaf-bottom-left {
-        bottom: 0; left: 0;
-        transform: translate(-50%, 50%) rotate(-45deg);
-    }
+    #leaf-top-right { top: 0; right: 0; transform: translate(50%, -50%) rotate(45deg); }
+    #leaf-bottom-left { bottom: 0; left: 0; transform: translate(-50%, 50%) rotate(-45deg); }
 
     video {
       border-radius: 10px;
       max-width: 100%;
-      height: auto;
       display: block;
-    }
-/* ĐIỀU CHỈNH THANH ĐIỀU KHIỂN VIDEO */
-    video::-webkit-media-controls-enclosure {
-      min-height: 40px; 
+      margin: 0 auto; /* Đảm bảo căn giữa */
     }
 
-    /* HIỆU ỨNG ẢNH RƠI (Kích thước 70px, tốc độ chậm) */
     .falling-photo {
       position: absolute;
-      width: 300px; 
+      width: 300px;
       height: 300px;
       border-radius: 5px;
       object-fit: cover;
@@ -133,19 +92,18 @@
       z-index: 5;
     }
 
-    /* THIẾT LẬP RƠI CHẬM VÀ XEN KẼ CHO 5 ẢNH CHỌN LỌC */
-    #photo1 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 10%; animation-duration: 25s; animation-delay: 0s; } 
-    #photo2 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 30%; animation-duration: 30s; animation-delay: 5s; } 
-    #photo3 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 50%; animation-duration: 26s; animation-delay: 10s; } 
-    #photo4 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 70%; animation-duration: 29s; animation-delay: 15s; } 
-    #photo5 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 90%; animation-duration: 28s; animation-delay: 20s; } 
+    #photo1 { --initial-x: 20px; left: 10%; animation-duration: 25s; animation-delay: 0s; } 
+    #photo2 { --initial-x: -10px; left: 30%; animation-duration: 30s; animation-delay: 5s; } 
+    #photo3 { --initial-x: 15px; left: 50%; animation-duration: 26s; animation-delay: 10s; } 
+    #photo4 { --initial-x: -5px; left: 70%; animation-duration: 29s; animation-delay: 15s; } 
+    #photo5 { --initial-x: -25px; left: 90%; animation-duration: 28s; animation-delay: 20s; } 
   </style>
 </head>
 <body>
   
   <div class="content-wrapper">
       <h1>Thùy Linh & Minh Hiếu</h1>
-      <p>Wedding</p>
+<p>Wedding</p>
       
       <div class="video-container">
         <span id="leaf-top-right" class="leaf-branch">🌿</span>
@@ -157,10 +115,11 @@
       </div>
   </div>
 
-  <img src="anh2.jpg" alt="Photo 2" class="falling-photo" id="photo1">
-  <img src="anh3.jpg" alt="Photo 3" class="falling-photo" id="photo2">
-  <img src="anh15.jpg" alt="Photo 15" class="falling-photo" id="photo3">
-  <img src="anh18.jpg" alt="Photo 18" class="falling-photo" id="photo4">
-  <img src="anh24.jpg" alt="Photo 24" class="falling-photo" id="photo5">
+  <img src="anh2.jpg" class="falling-photo" id="photo1">
+  <img src="anh3.jpg" class="falling-photo" id="photo2">
+  <img src="anh15.jpg" class="falling-photo" id="photo3">
+  <img src="anh18.jpg" class="falling-photo" id="photo4">
+  <img src="anh24.jpg" class="falling-photo" id="photo5">
+
 </body>
 </html>
