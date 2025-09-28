@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Trang web Đám cưới của Thùy Linh & Minh Hiếu</title>
+  <title>Thùy Linh & Minh Hiếu</title>
   <style>
     /* KEYFRAMES CHO HIỆU ỨNG RƠI NGẪU NHIÊN */
     @keyframes fall {
       0% {
+        /* Bắt đầu ở trên cùng màn hình (Y: -100%) */
         transform: translateY(-100%) translateX(var(--initial-x)) rotate(var(--initial-rotate));
         opacity: 0;
       }
       10% {
-        opacity: 0.8; /* Ảnh bắt đầu xuất hiện */
+        opacity: 0.8; 
       }
       90% {
         opacity: 0.8;
       }
       100% {
+        /* Rơi xuống dưới cùng màn hình (Y: 100vh) */
         transform: translateY(100vh) translateX(var(--final-x)) rotate(var(--final-rotate));
-        opacity: 0; /* Ảnh biến mất khi ra khỏi màn hình */
+        opacity: 0;
       }
     }
 
@@ -31,25 +33,27 @@
       min-height: 100vh;
       overflow: hidden; 
       
+      /* CHỈ CĂN GIỮA NỘI DUNG THEO CHIỀU NGANG */
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* DỜI LÊN TRÊN */
       align-items: center;
-      padding-top: 20px; /* Thêm padding nhẹ ở trên cùng */
+      /* KHÔNG dùng justify-content: flex-start/center; */
     }
 
     h1 {
       color: #8b0000;
       font-size: 4em;
-      margin-top: 0;
+      margin-top: 50px; /* TẠO KHOẢNG CÁCH TỪ ĐỈNH TRANG XUỐNG CHỮ */
       margin-bottom: 5px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      z-index: 15; /* Đảm bảo chữ nằm trên ảnh rơi */
     }
 
     p {
       color: #880e4f;
       font-size: 2.5em;
-      margin-bottom: 20px; /* GIẢM KHOẢNG CÁCH DƯỚI "WEDDING" */
+      margin-bottom: 20px;
+      z-index: 15; /* Đảm bảo chữ nằm trên ảnh rơi */
     }
 
     /* KHUNG VIỀN HOA HỒNG VÀ CÀNH LÁ CHO VIDEO */
@@ -61,9 +65,9 @@
       background-color: #ffffff;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       position: relative;
-      margin-top: 10px; /* GIẢM KHOẢNG CÁCH TRÊN VIDEO */
+      margin-top: 10px; 
       z-index: 10; 
-      max-width: 80%; /* VIDEO BỰ RA */
+      max-width: 80%;
     }
     
     /* Hoa hồng (Góc trên trái và dưới phải) */
@@ -100,7 +104,7 @@
 
     video {
       border-radius: 10px;
-      max-width: 100%; /* ĐẢM BẢO VIDEO ĐẦY KHUNG */
+      max-width: 100%;
       height: auto;
       display: block;
     }
@@ -108,14 +112,14 @@
     /* HIỆU ỨNG ẢNH RƠI */
     .falling-photo {
       position: absolute;
-      width: 300px; /* HÌNH RƠI BỰ RA */
-      height: 300px; /* HÌNH RƠI BỰ RA */
-border-radius: 5px;
+width: 300px; 
+      height: 300px;
+      border-radius: 5px;
       object-fit: cover;
       opacity: 0;
       animation-name: fall;
       animation-iteration-count: infinite;
-      z-index: 5;
+      z-index: 5; /* Ảnh rơi vẫn nằm giữa background và video/chữ */
     }
 
     /* THIẾT LẬP NGẪU NHIÊN CHO 25 ẢNH */
@@ -135,8 +139,8 @@ border-radius: 5px;
     #photo14 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 70%; animation-duration: 18s; animation-delay: 13s; }
     #photo15 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 75%; animation-duration: 16s; animation-delay: 14s; }
     #photo16 { --initial-x: -30px; --initial-rotate: 5deg; --final-x: -5px; --final-rotate: 15deg; left: 80%; animation-duration: 22s; animation-delay: 15s; }
-    #photo17 { --initial-x: 10px; --initial-rotate: -15deg; --final-x: 35px; --final-rotate: -5deg; left: 85%; animation-duration: 14s; animation-delay: 16s; }
-#photo18 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 90%; animation-duration: 19s; animation-delay: 17s; }
+#photo17 { --initial-x: 10px; --initial-rotate: -15deg; --final-x: 35px; --final-rotate: -5deg; left: 85%; animation-duration: 14s; animation-delay: 16s; }
+    #photo18 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 90%; animation-duration: 19s; animation-delay: 17s; }
     #photo19 { --initial-x: 25px; --initial-rotate: -10deg; --final-x: 10px; --final-rotate: -15deg; left: 95%; animation-duration: 17s; animation-delay: 18s; }
     #photo20 { --initial-x: -15px; --initial-rotate: 0deg; --final-x: 5px; --final-rotate: 10deg; left: 3%; animation-duration: 13s; animation-delay: 19s; }
     #photo21 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 8%; animation-duration: 15s; animation-delay: 20s; }
@@ -176,9 +180,9 @@ border-radius: 5px;
   <img src="anh14.jpg" alt="Photo 14" class="falling-photo" id="photo14">
   <img src="anh15.jpg" alt="Photo 15" class="falling-photo" id="photo15">
   <img src="anh16.jpg" alt="Photo 16" class="falling-photo" id="photo16">
-  <img src="anh17.jpg" alt="Photo 17" class="falling-photo" id="photo17">
+<img src="anh17.jpg" alt="Photo 17" class="falling-photo" id="photo17">
   <img src="anh18.jpg" alt="Photo 18" class="falling-photo" id="photo18">
-<img src="anh19.jpg" alt="Photo 19" class="falling-photo" id="photo19">
+  <img src="anh19.jpg" alt="Photo 19" class="falling-photo" id="photo19">
   <img src="anh20.jpg" alt="Photo 20" class="falling-photo" id="photo20">
   <img src="anh21.jpg" alt="Photo 21" class="falling-photo" id="photo21">
   <img src="anh22.jpg" alt="Photo 22" class="falling-photo" id="photo22">
