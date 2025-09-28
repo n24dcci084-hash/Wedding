@@ -17,9 +17,6 @@
       position: relative;
       min-height: 100vh;
       overflow-x: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .content-wrapper {
@@ -28,6 +25,7 @@
         align-items: center;
         z-index: 10;
         width: 100%;
+        padding-top: 30px;
     }
 
     h1 {
@@ -44,17 +42,15 @@
     }
 
     .video-container {
-      display: flex;
-      justify-content: center; /* Căn giữa video */
-      align-items: center;
       padding: 30px;
       border: 2px solid #b7410e;
       border-radius: 20px;
       background-color: #ffffff;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       position: relative;
-      margin-top: 10px;
-      max-width: 90%;
+      margin: 10px auto;       /* Căn giữa ngang */
+      max-width: 700px;        /* Chiều rộng tối đa */
+      width: 90%;              /* Tự co giãn theo màn hình */
     }
 
     .video-container::before, .video-container::after {
@@ -77,7 +73,7 @@
       border-radius: 10px;
       max-width: 100%;
       display: block;
-      margin: 0 auto; /* Đảm bảo căn giữa */
+      margin: 0 auto;
     }
 
     .falling-photo {
@@ -103,9 +99,8 @@
   
   <div class="content-wrapper">
       <h1>Thùy Linh & Minh Hiếu</h1>
-<p>Wedding</p>
-      
-      <div class="video-container">
+      <p>Wedding</p>
+<div class="video-container">
         <span id="leaf-top-right" class="leaf-branch">🌿</span>
         <span id="leaf-bottom-left" class="leaf-branch">🌿</span>
         <video controls>
