@@ -3,30 +3,43 @@
 <head>
   <title>Thùy Linh & Minh Hiếu</title>
   <style>
-    body {
-      font-family: 'Times New Roman', serif;
-      background-color: #ffeef2; /* Màu hồng nhạt */
-      color: #333;
-      text-align: center;
-      padding-top: 50px;
+    /* KEYFRAMES CHO HIỆU ỨNG RƠI NGẪU NHIÊN */
+    @keyframes fall {
+      0% {
+        transform: translateY(-100%) translateX(var(--initial-x)) rotate(var(--initial-rotate));
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8; /* Ảnh bắt đầu xuất hiện */
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(100vh) translateX(var(--final-x)) rotate(var(--final-rotate));
+        opacity: 0; /* Ảnh biến mất khi ra khỏi màn hình */
+      }
     }
 
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23ffc0cb" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C15.09 3.81 16.76 3 18.5 3 21.58 3 24 5.42 24 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
-      background-repeat: repeat;
-      background-size: 80px 80px;
-      opacity: 0.1;
-      z-index: -1;
+    /* CSS CHÍNH */
+    body {
+      font-family: 'Times New Roman', serif;
+      background-color: #f5f5dc; /* Màu be */
+      color: #333;
+      text-align: center;
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden; 
+      
+      /* FLEXBOX ĐỂ CĂN GIỮA NỘI DUNG CHÍNH */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     h1 {
-      color: #e91e63; /* Màu hồng đậm hơn */
+      color: #8b0000;
       font-size: 4em;
       margin-top: 0;
       margin-bottom: 5px;
@@ -35,26 +48,142 @@
 
     p {
       color: #880e4f;
-      font-size: 1.8em;
+      font-size: 2.5em;
       margin-bottom: 30px;
     }
 
-    video {
-      border: 5px solid #ff80ab;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      max-width: 90%;
-      height: auto;
+    /* KHUNG VIỀN HOA HỒNG VÀ CÀNH LÁ CHO VIDEO */
+    .video-container {
+      display: inline-block;
+      padding: 30px;
+      border: 2px solid #b7410e;
+      border-radius: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      position: relative;
+      margin-top: 20px; 
+      z-index: 10; 
     }
+    
+    /* Hoa hồng (Góc trên trái và dưới phải) */
+    .video-container::before, .video-container::after {
+        content: "🌹";
+        font-size: 30px;
+        position: absolute;
+        z-index: 20;
+    }
+    .video-container::before {
+        top: 0; left: 0;
+        transform: translate(-50%, -50%);
+    }
+    .video-container::after {
+        bottom: 0; right: 0;
+        transform: translate(50%, 50%);
+    }
+
+    /* Cành lá xanh (Góc trên phải và dưới trái) */
+    .leaf-branch {
+        content: "🌿";
+        font-size: 30px;
+        position: absolute;
+        z-index: 20;
+    }
+    #leaf-top-right {
+        top: 0; right: 0;
+        transform: translate(50%, -50%) rotate(45deg);
+    }
+    #leaf-bottom-left {
+        bottom: 0; left: 0;
+        transform: translate(-50%, 50%) rotate(-45deg);
+    }
+
+    video {
+      border-radius: 10px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* HIỆU ỨNG ẢNH RƠI */
+    .falling-photo {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+      object-fit: cover;
+      opacity: 0;
+      animation-name: fall;
+      animation-iteration-count: infinite;
+      z-index: 5; /* Nằm giữa background và video */
+    }
+
+    /* THIẾT LẬP NGẪU NHIÊN CHO 25 ẢNH */
+    /* Sử dụng các giá trị ngẫu nhiên cho left, duration, và delay để tạo hiệu ứng xen kẽ */
+    #photo1 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 5%; animation-duration: 15s; animation-delay: 0s; }
+    #photo2 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 10%; animation-duration: 20s; animation-delay: 1s; }
+    #photo3 { --initial-x: 5px; --initial-rotate: -5deg; --final-x: 40px; --final-rotate: 20deg; left: 15%; animation-duration: 12s; animation-delay: 2s; }
+    #photo4 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 20%; animation-duration: 18s; animation-delay: 3s; }
+    #photo5 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 25%; animation-duration: 16s; animation-delay: 4s; }
+    #photo6 { --initial-x: -30px; --initial-rotate: 5deg; --final-x: -5px; --final-rotate: 15deg; left: 30%; animation-duration: 22s; animation-delay: 5s; }
+    #photo7 { --initial-x: 10px; --initial-rotate: -15deg; --final-x: 35px; --final-rotate: -5deg; left: 35%; animation-duration: 14s; animation-delay: 6s; }
+    #photo8 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 40%; animation-duration: 19s; animation-delay: 7s; }
+    #photo9 { --initial-x: 25px; --initial-rotate: -10deg; --final-x: 10px; --final-rotate: -15deg; left: 45%; animation-duration: 17s; animation-delay: 8s; }
+    #photo10 { --initial-x: -15px; --initial-rotate: 0deg; --final-x: 5px; --final-rotate: 10deg; left: 50%; animation-duration: 13s; animation-delay: 9s; }
+    #photo11 { --initial-x: 5px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 55%; animation-duration: 15s; animation-delay: 10s; }
+    #photo12 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 60%; animation-duration: 20s; animation-delay: 11s; }
+    #photo13 { --initial-x: 5px; --initial-rotate: -5deg; --final-x: 40px; --final-rotate: 20deg; left: 65%; animation-duration: 12s; animation-delay: 12s; }
+    #photo14 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 70%; animation-duration: 18s; animation-delay: 13s; }
+    #photo15 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 75%; animation-duration: 16s; animation-delay: 14s; }
+    #photo16 { --initial-x: -30px; --initial-rotate: 5deg; --final-x: -5px; --final-rotate: 15deg; left: 80%; animation-duration: 22s; animation-delay: 15s; }
+    #photo17 { --initial-x: 10px; --initial-rotate: -15deg; --final-x: 35px; --final-rotate: -5deg; left: 85%; animation-duration: 14s; animation-delay: 16s; }
+    #photo18 { --initial-x: -5px; --initial-rotate: 20deg; --final-x: -30px; --final-rotate: 25deg; left: 90%; animation-duration: 19s; animation-delay: 17s; }
+    #photo19 { --initial-x: 25px; --initial-rotate: -10deg; --final-x: 10px; --final-rotate: -15deg; left: 95%; animation-duration: 17s; animation-delay: 18s; }
+    #photo20 { --initial-x: -15px; --initial-rotate: 0deg; --final-x: 5px; --final-rotate: 10deg; left: 3%; animation-duration: 13s; animation-delay: 19s; }
+    #photo21 { --initial-x: 20px; --initial-rotate: 10deg; --final-x: 30px; --final-rotate: 30deg; left: 8%; animation-duration: 15s; animation-delay: 20s; }
+    #photo22 { --initial-x: -10px; --initial-rotate: 15deg; --final-x: -20px; --final-rotate: -10deg; left: 13%; animation-duration: 20s; animation-delay: 21s; }
+    #photo23 { --initial-x: 5px; --initial-rotate: -5deg; --final-x: 40px; --final-rotate: 20deg; left: 18%; animation-duration: 12s; animation-delay: 22s; }
+    #photo24 { --initial-x: -25px; --initial-rotate: 25deg; --final-x: -10px; --final-rotate: -20deg; left: 23%; animation-duration: 18s; animation-delay: 23s; }
+    #photo25 { --initial-x: 15px; --initial-rotate: 10deg; --final-x: 25px; --final-rotate: 5deg; left: 28%; animation-duration: 16s; animation-delay: 24s; }
+
   </style>
 </head>
 <body>
   <h1>Thùy Linh & Minh Hiếu</h1>
   <p>Wedding</p>
   
-  <video controls>
-    <source src="MWD.mp4" type="video/mp4">
-    Trình duyệt của bạn không hỗ trợ thẻ video.
-  </video>
+  <div class="video-container">
+    <span id="leaf-top-right" class="leaf-branch">🌿</span>
+    <span id="leaf-bottom-left" class="leaf-branch">🌿</span>
+    <video controls>
+      <source src="MWD chú rể.mp4" type="video/mp4">
+      Trình duyệt của bạn không hỗ trợ thẻ video.
+    </video>
+  </div>
+
+  <img src="anh1.jpg" alt="Photo 1" class="falling-photo" id="photo1">
+  <img src="anh2.jpg" alt="Photo 2" class="falling-photo" id="photo2">
+  <img src="anh3.jpg" alt="Photo 3" class="falling-photo" id="photo3">
+  <img src="anh4.jpg" alt="Photo 4" class="falling-photo" id="photo4">
+  <img src="anh5.jpg" alt="Photo 5" class="falling-photo" id="photo5">
+  <img src="anh6.jpg" alt="Photo 6" class="falling-photo" id="photo6">
+  <img src="anh7.jpg" alt="Photo 7" class="falling-photo" id="photo7">
+  <img src="anh8.jpg" alt="Photo 8" class="falling-photo" id="photo8">
+  <img src="anh9.jpg" alt="Photo 9" class="falling-photo" id="photo9">
+  <img src="anh10.jpg" alt="Photo 10" class="falling-photo" id="photo10">
+  <img src="anh11.jpg" alt="Photo 11" class="falling-photo" id="photo11">
+  <img src="anh12.jpg" alt="Photo 12" class="falling-photo" id="photo12">
+  <img src="anh13.jpg" alt="Photo 13" class="falling-photo" id="photo13">
+  <img src="anh14.jpg" alt="Photo 14" class="falling-photo" id="photo14">
+  <img src="anh15.jpg" alt="Photo 15" class="falling-photo" id="photo15">
+  <img src="anh16.jpg" alt="Photo 16" class="falling-photo" id="photo16">
+  <img src="anh17.jpg" alt="Photo 17" class="falling-photo" id="photo17">
+  <img src="anh18.jpg" alt="Photo 18" class="falling-photo" id="photo18">
+  <img src="anh19.jpg" alt="Photo 19" class="falling-photo" id="photo19">
+  <img src="anh20.jpg" alt="Photo 20" class="falling-photo" id="photo20">
+  <img src="anh21.jpg" alt="Photo 21" class="falling-photo" id="photo21">
+  <img src="anh22.jpg" alt="Photo 22" class="falling-photo" id="photo22">
+  <img src="anh23.jpg" alt="Photo 23" class="falling-photo" id="photo23">
+  <img src="anh24.jpg" alt="Photo 24" class="falling-photo" id="photo24">
+  <img src="anh25.jpg" alt="Photo 25" class="falling-photo" id="photo25">
 </body>
 </html>
