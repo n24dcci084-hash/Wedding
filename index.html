@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Thùy Linh & Minh Hiếu</title>
   <style>
-    /* Hiệu ứng rơi */
     @keyframes fall {
       0% {
         transform: translateY(-100%) translateX(var(--initial-x)) rotate(var(--initial-rotate));
@@ -36,12 +35,13 @@
     .content-wrapper {
       position: absolute;
       top: 50%;
-      right: 5%;
+      left: 3%; /* Nhích thêm về bên trái */
       transform: translateY(-50%);
       text-align: center;
       z-index: 10;
-      max-width: 600px;
-      white-space: nowrap; /* Giữ tên không xuống dòng */
+      width: 94%;
+      box-sizing: border-box;
+      white-space: nowrap;
     }
 
     h1 {
@@ -58,63 +58,25 @@
     }
 
     .video-container {
-      padding: 20px;
-      border: 2px solid #b7410e;
-      border-radius: 20px;
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      position: relative;
-      display: inline-block;
-      width: 110%; /* Làm video to hơn */
-      transform: translateX(-5%); /* Nhích nhẹ sang trái */
-    }
-
-    .video-container::before, .video-container::after {
-      content: "🌹";
-      font-size: 30px;
-      position: absolute;
-      z-index: 20;
-    }
-
-    .video-container::before {
-      top: 0; left: 0;
-      transform: translate(-50%, -50%);
-    }
-
-    .video-container::after {
-      bottom: 0; right: 0;
-      transform: translate(50%, 50%);
-    }
-
-    .leaf-branch {
-      content: "🌿";
-      font-size: 30px;
-      position: absolute;
-      z-index: 20;
-    }
-
-    #leaf-top-right {
-      top: 0; right: 0;
-      transform: translate(50%, -50%) rotate(45deg);
-    }
-
-    #leaf-bottom-left {
-      bottom: 0; left: 0;
-      transform: translate(-50%, 50%) rotate(-45deg);
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background-color: transparent;
+      box-shadow: none;
+      width: 100%;
     }
 
     video {
-      border-radius: 10px;
       width: 100%;
       height: auto;
       display: block;
+      border-radius: 0;
     }
 
-    /* Ảnh rơi */
     .falling-photo {
       position: absolute;
-      width: 300px;
-      height: 300px;
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       border-radius: 10px;
       animation: fall linear infinite;
@@ -139,13 +101,8 @@
       }
 
       .content-wrapper {
-        right: 2%;
-        max-width: 90%;
-      }
-
-      .video-container {
-        width: 100%;
-        transform: translateX(0%);
+        left: 2%;
+        width: 96%;
       }
 
       .falling-photo {
@@ -160,8 +117,6 @@
     <h1>Thùy Linh & Minh Hiếu</h1>
     <p>Wedding</p>
     <div class="video-container">
-      <span id="leaf-top-right" class="leaf-branch">🌿</span>
-      <span id="leaf-bottom-left" class="leaf-branch">🌿</span>
       <video controls>
         <source src="MWD.mp4" type="video/mp4">
         Trình duyệt của bạn không hỗ trợ thẻ video.
