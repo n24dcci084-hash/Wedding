@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Thùy Linh & Minh Hiếu</title>
   <style>
+    /* Hiệu ứng rơi */
     @keyframes fall {
       0% {
         transform: translateY(-100%) translateX(var(--initial-x)) rotate(var(--initial-rotate));
@@ -40,6 +41,7 @@
       text-align: center;
       z-index: 10;
       max-width: 600px;
+      white-space: nowrap; /* Giữ tên không xuống dòng */
     }
 
     h1 {
@@ -63,7 +65,8 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       position: relative;
       display: inline-block;
-      width: 100%;
+      width: 110%; /* Làm video to hơn */
+      transform: translateX(-5%); /* Nhích nhẹ sang trái */
     }
 
     .video-container::before, .video-container::after {
@@ -102,11 +105,12 @@
 
     video {
       border-radius: 10px;
-      max-width: 100%;
+      width: 100%;
       height: auto;
       display: block;
     }
 
+    /* Ảnh rơi */
     .falling-photo {
       position: absolute;
       width: 300px;
@@ -114,6 +118,8 @@
       object-fit: cover;
       border-radius: 10px;
       animation: fall linear infinite;
+      animation-fill-mode: forwards;
+      opacity: 0;
       z-index: 5;
     }
 
@@ -135,6 +141,11 @@
       .content-wrapper {
         right: 2%;
         max-width: 90%;
+      }
+
+      .video-container {
+        width: 100%;
+        transform: translateX(0%);
       }
 
       .falling-photo {
